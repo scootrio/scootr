@@ -1,3 +1,6 @@
+# Build and Testing Artifacts
+.scoots/
+
 # IDE
 .vscode/
 
