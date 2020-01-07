@@ -17,7 +17,7 @@ const compute = require('../../lib/objects/compute');
 describe('Connection Object', function() {
   it('should create a new connection object', function() {
     const obj = connection('MyConnection');
-    obj._meta.type.should.equal(Connection);
+    obj.meta.type.should.equal(Connection);
   });
 
   it('should fail to create a new connection with a bad ID', function() {

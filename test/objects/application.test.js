@@ -12,7 +12,7 @@ const http = require('../../lib/events/http');
 describe('Application Object', function() {
   it('should create a new application object', function() {
     const app = application('MyApplication', 'region');
-    app._meta.type.should.equal(Application);
+    app.meta.type.should.equal(Application);
   });
 
   it('should fail to create a new application object with missing arguments', function() {

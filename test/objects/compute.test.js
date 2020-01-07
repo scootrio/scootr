@@ -8,7 +8,7 @@ const { Compute } = require('../../lib/types');
 describe('Compute Object', function() {
   it('should create a new compute object', function() {
     const obj = compute('MyNewComputeObject', 'runtime');
-    obj._meta.type.should.equal(Compute);
+    obj.meta.type.should.equal(Compute);
   });
 
   it('should fail to create a new compute object with a bad ID', function() {

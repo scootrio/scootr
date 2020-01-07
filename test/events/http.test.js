@@ -8,7 +8,7 @@ const { HttpEvent } = require('../../lib/types');
 describe('HTTP Event', function() {
   it('should create a new HTTP event', function() {
     const event = http('MyHttpEvent');
-    event._meta.type.should.equal(HttpEvent);
+    event.meta.type.should.equal(HttpEvent);
   });
 
   it('should fail to create a new HTTP event with bad ID', function() {

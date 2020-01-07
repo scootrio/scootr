@@ -8,7 +8,7 @@ const { Storage } = require('../../lib/types');
 describe('Storage Object', function() {
   it('should create a new storage object', function() {
     const obj = storage('MyStorage', 'MyType');
-    obj._meta.type.should.equal(Storage);
+    obj.meta.type.should.equal(Storage);
   });
 
   it('should fail to create a new storage object if type is missing', function() {
