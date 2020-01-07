@@ -3,12 +3,12 @@
 require('chai').should();
 
 const compute = require('../../lib/objects/compute');
-const { COMPUTE } = require('../../lib/objects/types');
+const { Compute } = require('../../lib/types');
 
 describe('Compute Object', function() {
   it('should create a new compute object', function() {
     const obj = compute('MyNewComputeObject', 'runtime');
-    obj._meta.type.should.equal(COMPUTE);
+    obj._meta.type.should.equal(Compute);
   });
 
   it('should fail to create a new compute object with a bad ID', function() {

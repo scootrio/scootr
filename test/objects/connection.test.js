@@ -4,11 +4,11 @@ require('chai').should();
 
 const connection = require('../../lib/objects/connection');
 const {
-  CONNECTION,
-  CONNECTION_INTERNAL_EVENT,
-  CONNECTION_STORAGE,
-  CONNECTION_TRIGGER
-} = require('../../lib/objects/types');
+  Connection,
+  InternalEventConnection,
+  StorageConnection,
+  TriggerConnection
+} = require('../../lib/types');
 const http = require('../../lib/events/http');
 const ievent = require('../../lib/events/ievent');
 const storage = require('../../lib/objects/storage');
@@ -17,7 +17,7 @@ const compute = require('../../lib/objects/compute');
 describe('Connection Object', function() {
   it('should create a new connection object', function() {
     const obj = connection('MyConnection');
-    obj._meta.type.should.equal(CONNECTION);
+    obj._meta.type.should.equal(Connection);
   });
 
   it('should fail to create a new connection with a bad ID', function() {
@@ -32,7 +32,7 @@ describe('Connection Object', function() {
     const conn = connection('MyConnection')
       .from(source)
       .to(target);
-    conn.config.type.should.equal(CONNECTION_TRIGGER);
+    conn.config.type.should.equal(TriggerConnection);
   });
 
   it('should create a trigger from an internal event', function() {
@@ -41,7 +41,7 @@ describe('Connection Object', function() {
     const conn = connection('MyConnection')
       .from(source)
       .to(target);
-    conn.config.type.should.equal(CONNECTION_TRIGGER);
+    conn.config.type.should.equal(TriggerConnection);
   });
 
   it('should create a connection to an internal event', function() {
@@ -50,7 +50,7 @@ describe('Connection Object', function() {
     const conn = connection('MyConnection')
       .from(source)
       .to(target);
-    conn.config.type.should.equal(CONNECTION_INTERNAL_EVENT);
+    conn.config.type.should.equal(InternalEventConnection);
   });
 
   it('should create a connection to a storage object', function() {
@@ -59,6 +59,6 @@ describe('Connection Object', function() {
     const conn = connection('MyConnection')
       .from(source)
       .to(target);
-    conn.config.type.should.equal(CONNECTION_STORAGE);
+    conn.config.type.should.equal(StorageConnection);
   });
 });

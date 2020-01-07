@@ -3,7 +3,7 @@
 require('chai').should();
 
 const application = require('../../lib/objects/application');
-const { APPLICATION } = require('../../lib/objects/types');
+const { Application } = require('../../lib/types');
 const compute = require('../../lib/objects/compute');
 const storage = require('../../lib/objects/storage');
 const connection = require('../../lib/objects/connection');
@@ -12,7 +12,7 @@ const http = require('../../lib/events/http');
 describe('Application Object', function() {
   it('should create a new application object', function() {
     const app = application('MyApplication', 'region');
-    app._meta.type.should.equal(APPLICATION);
+    app._meta.type.should.equal(Application);
   });
 
   it('should fail to create a new application object with missing arguments', function() {
