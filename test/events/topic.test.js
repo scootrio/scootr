@@ -2,18 +2,18 @@
 
 require('chai').should();
 
-const ievent = require('../../lib/events/ievent');
-const { InternalEvent } = require('../../lib/types');
+const topic = require('../../lib/resources/events/topic');
+const { TopicEvent } = require('../../lib/types');
 
 describe('Internal Event', function() {
   it('should create a new internal event', function() {
-    const event = ievent('MyInternalEvent');
-    event.meta.type.should.equal(InternalEvent);
+    const event = topic('MyInternalEvent');
+    event.meta.type.should.equal(TopicEvent);
   });
 
   it('should fail to create a new internal event with a bad ID', function() {
     (function() {
-      ievent('my-bad id-for my event');
+      topic('my-bad id-for my event');
     }.should.throw(Error));
   });
 });

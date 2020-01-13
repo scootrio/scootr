@@ -1,10 +1,7 @@
-const { application, compute, storage } = require('scootr');
-const { ievent, http } = require('scootr/events');
-const driver = require('scootr-aws');
-const regions = require('scootr-aws/regions');
+const { application, compute, storage, topic, http, actions } = require('scootr');
+const { driver, regions } = require('scootr-aws');
 
-
-application('MyApplicationName', regions.US_WEST_2)
+application('MyApplicationName')
   .with(
     compute('MyCompute')
       .env('NAME', 'value')
@@ -13,9 +10,9 @@ application('MyApplicationName', regions.US_WEST_2)
           .path('/event')
           .method('GET')
       )
-      .use(storage('MyStorage'))
-      .use(ievent('MyInternalEvent'))
+      .use(storage('MyStorage'), [actions.All], 'MyStorageConnection')
+      .use(ievent('MyInternalEvent'), [], 'MyEventConnection')
   )
-  .deploy(driver)
+  .deploy(driver, regions.US_WEST_2)
   .then(console.log)
   .catch(console.error);

@@ -2,16 +2,16 @@
 
 require('chai').should();
 
-const compute = require('../../lib/objects/compute');
+const compute = require('../../lib/resources/compute');
 const { Compute } = require('../../lib/types');
 
 describe('Compute Object', function() {
-  it('should create a new compute object', function() {
+  it('should create a new compute resource', function() {
     const obj = compute('MyNewComputeObject', 'runtime');
     obj.meta.type.should.equal(Compute);
   });
 
-  it('should fail to create a new compute object with a bad ID', function() {
+  it('should fail to create a new compute resource with a bad ID', function() {
     (function() {
       compute('my bad id for-my COMPUTE instance', 'runtime');
     }.should.throw(Error));

@@ -2,7 +2,7 @@
 
 require('chai').should();
 
-const http = require('../../lib/events/http');
+const http = require('../../lib/resources/events/http');
 const { HttpEvent } = require('../../lib/types');
 
 describe('HTTP Event', function() {
