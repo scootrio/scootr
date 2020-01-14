@@ -1,5 +1,5 @@
-const { application, compute, storage, topic, http, actions } = require('scootr');
-const { driver, regions } = require('scootr-aws');
+const { application, compute, storage, topic, http, actions, types } = require('scootr');
+const { driver, enums } = require('scootr-aws');
 
 application('MyApplicationName')
   .with(
@@ -10,9 +10,23 @@ application('MyApplicationName')
           .path('/event')
           .method('GET')
       )
-      .use(storage('MyStorage'), [actions.All], 'MyStorageConnection')
-      .use(ievent('MyInternalEvent'), [], 'MyEventConnection')
+      .use(
+        storage('MyStorage', types.KeyValueStorage)
+          .engine(enums.Storage.DynamoDb)
+          .collection('Users')
+          .key('ID')
+          .keytype(enums.Storage.String),
+        [actions.All],
+        'MyStorageConnection'
+      )
+      .use(
+        topic('MyInternalEvent')
+          .engine(enums.Engines.SNS)
+          .name('mytopic'),
+        [actions.Create],
+        'MyEventConnection'
+      )
   )
-  .deploy(driver, regions.US_WEST_2)
+  .deploy(driver, enums.Regions.UsWest2)
   .then(console.log)
   .catch(console.error);
