@@ -3,11 +3,11 @@
 require('chai').should();
 
 const storage = require('../../lib/resources/storage');
-const { Storage } = require('../../lib/types');
+const { Storage, KeyValueStorage } = require('../../lib/types');
 
 describe('Storage Object', function() {
   it('should create a new storage resource', function() {
-    const obj = storage('MyStorage', 'MyType');
+    const obj = storage('MyStorage', KeyValueStorage);
     obj.meta.type.should.equal(Storage);
   });
 

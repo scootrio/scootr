@@ -3,7 +3,7 @@
 require('chai').should();
 
 const application = require('../../lib/resources/application');
-const { Application } = require('../../lib/types');
+const { Application, KeyValueStorage } = require('../../lib/types');
 const compute = require('../../lib/resources/compute');
 const storage = require('../../lib/resources/storage');
 const http = require('../../lib/resources/events/http');
@@ -30,7 +30,7 @@ describe('Application Object', function() {
     application('MyApplication', 'region').with(
       compute('MyCompute', 'runtime')
         .on(http('MyHttpEvent'))
-        .use(storage('MyStorage', 'type'), [])
+        .use(storage('MyStorage', KeyValueStorage), [])
     );
   });
 
@@ -65,7 +65,7 @@ describe('Application Object', function() {
       const app = application('MyApplication', 'region').with(
         compute('MyCompute', 'runtime')
           .on(http('MyHttpEvent'))
-          .use(storage('MyStorage', 'type'), [])
+          .use(storage('MyStorage', KeyValueStorage), [])
       );
 
       const deployed = await app.deploy(driver);
