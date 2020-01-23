@@ -29,7 +29,9 @@ describe('HTTP Event', function() {
       const event = http('MyHttpEvent');
       const path = '/path/{fid}/subpath/{sid}';
       event.path(path);
-      event.config.params.should.have.all.keys('fid', 'sid');
+      event.config.params.should.have.length(2);
+      event.config.params[0].name.should.equal('fid');
+      event.config.params[1].name.should.equal('sid');
     });
   });
 
