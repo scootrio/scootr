@@ -24,6 +24,13 @@ describe('HTTP Event', function() {
       event.path(path);
       event.config.path.should.equal(path);
     });
+
+    it('should extract path parameters', function() {
+      const event = http('MyHttpEvent');
+      const path = '/path/{fid}/subpath/{sid}';
+      event.path(path);
+      event.config.params.should.have.all.keys('fid', 'sid');
+    });
   });
 
   describe('#method', function() {
